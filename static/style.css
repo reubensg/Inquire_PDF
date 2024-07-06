@@ -1,0 +1,235 @@
+
+*{
+    font-family: Georgia,serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+   
+    background-image: linear-gradient(#d9e9fa,#FFFFFF);
+    font-family: Georgia,serif;
+}
+
+.header{
+
+    padding: 0px;
+    border:1px,dotted,black;
+    background-image: linear-gradient(to right,#5096e5,#65b2e9);
+    /* position: fixed; */
+    /* margin:0px,; */
+}
+
+.header p{
+    margin-left:25px;
+    font-size:35px;
+    margin-bottom: 10px;    
+    margin-top: 15px;
+
+}
+
+.flex-container{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-child{
+    flex:1;
+    border: 2px,solid,white;
+    /* margin: 20px; */
+}
+.flex-child h3{
+    margin:10px;
+}
+.flex-child:first-child {
+    margin-right: 10px;
+    text-align: center;
+}
+
+.file::file-selector-button{
+    color:black;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border:2px,dotted,black
+}
+
+#submit{
+    background-color:  #5096e5;
+    color:white;
+    padding: 10px; 
+    cursor: pointer;
+    border-radius: 5px;
+    margin:0px;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.24);
+    border: 0px,solid,white;
+
+}
+#clear{
+    background-color: white ;
+    color:#5096e5;
+    padding: 5px; 
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom:0px;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.24);
+    border: 1px,solid,#5096e5;
+
+}
+#clear:hover{
+    background-color:  #5096e5;
+    color:white;
+    padding: 5px; 
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom:0px;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.24);
+    border: 0px,solid,white;
+
+}
+#submit:hover{
+    color: #5096e5;
+    transition: all 0.5s;
+    background-color: white;
+}
+
+#send{
+    /* background-color:  #5096e5; */
+    color: transparent;
+    background-color: white;
+    border-color: transparent;
+    outline: none;
+    text-decoration: none;
+
+
+}
+.bx{
+    background-color:  #5096e5;
+    color:white;
+    padding: 15px; 
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.24);
+    border: 0px,solid,white;
+
+}
+
+.bx:hover{
+    color: black;
+    transition: all 0.25s;
+    background-color:white;
+}
+
+#messageForm {
+  
+    display:flex;
+    flex-direction:row;
+    border:1px solid grey;
+    padding:1px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+  }
+
+  #messageInput{
+    flex-grow:2;
+    border:none;
+    background-color: white;
+    border-radius: 10px;
+    
+    
+  }
+  .hideb{
+    border-radius: 10px;
+
+
+  }
+
+
+  #messageInput:focus {
+    outline: none;
+   
+  }
+
+  #messageForm:focus-within { 
+    outline: 1px solid rgba(101, 100, 104, 0.365) 
+}
+
+  .input-wrapper {
+    position: relative;
+}
+.chat-container {
+    height: 550px; /* Adjust height as needed */
+    /* border: 1px solid grey; */
+    overflow: hidden;
+    overflow-y: scroll;
+    
+}
+
+.flex-child.chat {
+    display: flex;
+    flex-direction: column;
+    height: 90%; /* Adjust height as needed */
+}
+
+#pdfviewer{
+    width:90%;
+    height: 80%;
+}
+iframe{
+    border: 0px;
+    margin:5px;
+}
+#uploadForm{
+    top: 20px;
+}
+
+.user-message, .bot-message {
+    font-family: 'Times New Roman';
+    font-size: 17px;
+
+}
+
+.user-message {
+    margin-bottom: 10px; 
+    margin-top: 10px; 
+}
+.bot-message {
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.chat-message {
+    
+    white-space: pre-line;
+}
+.user-message {
+position: relative;
+background-color:#4577b0; /* Blue background for user input */
+color: #fff; /* White text color */
+border-radius: 10px; /* Rounded corners */
+padding: 10px; /* Add padding for spacing */
+margin-bottom: 10px; 
+text-align: justify;
+margin-left: 10px;
+margin-right: 10px;
+
+}
+
+.bot-message {
+position: relative;
+background-color: #0d5d20c2; /* Green background for bot responses */
+color: #fff; /* White text color */
+border-radius: 10px; /* Rounded corners */
+padding: 10px; /* Add padding for spacing */
+margin-bottom: 10px; 
+text-align: left;
+text-align: justify; /* Justify text */
+margin-left: 10px;
+margin-right: 10px;
+
+}

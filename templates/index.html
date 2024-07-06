@@ -1,0 +1,123 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Query Your PDF</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    </head>
+
+    <body>
+        <div class="header">
+            <p>ɪɴQᴜɪʀᴇ ᴘᴅꜰ</p>
+        </div>
+        <div>
+
+        </div>
+        <div class="flex-container">
+
+            <div class="flex-child pdf">
+                <!-- <h1>Query You PDF Documents</h1> -->
+                <h3> Upload your PDF Document</h3>
+                <form action="/upload" method="POST" enctype="multipart/form-data" id="uploadForm">
+
+                    <input type="file" id="uploadfile" class="file" name="file">
+                    <button type="submit" name="submit" id="submit">Submit</button>
+                    
+                    {% if filename %}
+                            <!-- {{ url_for('display_image', filename=filename) }} -->
+        
+                        <iframe src="{{ url_for('display_image', filename=filename) }}" frameborder="0" id="pdfviewer"></iframe>
+                        <!-- <iframe src="{{ url_for('display_image', filename=filename) }}"></iframe> -->
+                        <!-- <a href="{{ url_for('display_image', filename=filename) }}">{{ filename }}</a> -->
+                         <!-- <embed src="{{ url_for('display_image', filename=filename) }}" type="application/pdf" width="100%" height=100%> -->
+       
+                    {% endif %}
+                   
+                </form>
+                {% with messages = get_flashed_messages() %}  
+                    {% if messages %}  
+                        {% for message in messages %}  
+                            <p>{{ message }}</p>  
+                        {% endfor %}  
+                    {% endif %}  
+                {% endwith %}
+                <form action="/clear" method="POST" >
+                    <button type="submit" name="submit" id="clear" >Clear</button>
+
+                </form>
+                
+
+                
+            </div>
+
+            <div class="flex-child chat">
+                <div class="chat-container" id="chatContainer">
+                    <!-- Chat messages will be populated here -->
+                     
+                </div>
+                <div class="input-wrapper">
+                    <form action="/get" method="post" id="messageForm">
+                        <input id="messageInput" placeholder="Enter your question" name="text"></input>
+                        <button id="send" class="hideb"> <i class='bx bx-send'></i> </button>
+                        
+                </form>
+
+                </div>
+                
+            </div>     
+        </div>
+       
+        
+        <script>
+            document.getElementById("messageForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                var messageInput = document.getElementById("messageInput").value;
+                if (messageInput.trim() === '') {
+                    console.log("Empty");
+                    event.preventDefault();
+                    alert("Textarea cannot be empty!"); // Prevent form submission if textarea is empty
+                    return 
+                }
+                var chatContainer = document.getElementById("chatContainer");
+                var userMessageDiv = document.createElement("div");
+                userMessageDiv.classList.add("user-message"); // Add user-message class
+                userMessageDiv.classList.add("chat-message"); // Add chat-message class
+    
+                userMessageDiv.textContent = messageInput;
+                chatContainer.appendChild(userMessageDiv);
+                scrollToBottom(chatContainer);
+
+    
+                var formData = new FormData(this);
+                fetch("/get",{
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the returned message in the chat container
+                    var botMessageDiv = document.createElement("div");
+                    botMessageDiv.classList.add("bot-message"); // Add bot-message class
+                    botMessageDiv.classList.add("chat-message"); // Add chat-message class
+    
+                    botMessageDiv.textContent = data.message;
+                    chatContainer.appendChild(botMessageDiv);
+                    scrollToBottom(chatContainer);
+
+                })
+                .catch(error => console.error('Error:', error));
+    
+                // Clear the input field after sending
+                document.getElementById("messageInput").value = "";
+            });
+            function scrollToBottom(container) {
+                container.scrollTop = container.scrollHeight;
+            }
+        </script>
+    </body>
+</html>
